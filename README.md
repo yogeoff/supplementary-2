@@ -2,6 +2,17 @@
 
 This is a cloned version of the Supplementary Coursework 2 repo.
 
+Tasks completed:
+
+- [ ] Update the existing Gradle project
+    - [ ] Use the latest version of Gradle
+    - [ ] Migrate the build scripts to use Kotlin DSL instead of Groovy
+    - [ ] Update the project to use the latest versions of the specified dependencies
+- [ ] Create a CI/CD pipeline for the project in GitHub Actions
+- [ ] Implement appropriate DevSecOps into the pipeline and identify the inherent security issues within the codebase
+
+---
+
 Starter repository for DevOps resit CA2 - summer 2024
 
 Using the theoretical knowledge and practical experience of Gradle, GitHub and GitHub Actions, you are required to build a CI/CD pipeline for this repository. You should complete and document the following tasks:  
