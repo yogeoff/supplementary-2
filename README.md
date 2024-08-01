@@ -1,5 +1,7 @@
 # DevOps-CA2
 
+This is a cloned version of the Supplementary Coursework 2 repo.
+
 Starter repository for DevOps resit CA2 - summer 2024
 
 Using the theoretical knowledge and practical experience of Gradle, GitHub and GitHub Actions, you are required to build a CI/CD pipeline for this repository. You should complete and document the following tasks:  
