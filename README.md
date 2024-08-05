@@ -5,9 +5,9 @@ This is a cloned version of the Supplementary Coursework 2 repo.
 Tasks completed:
 
 - [ ] Update the existing Gradle project
-    - [ ] Use the latest version of Gradle
+    - [x] Use the latest version of Gradle
     - [ ] Migrate the build scripts to use Kotlin DSL instead of Groovy
-    - [ ] Update the project to use the latest versions of the specified dependencies
+    - [x] Update the project to use the latest versions of the specified dependencies
 - [ ] Create a CI/CD pipeline for the project in GitHub Actions
 - [ ] Implement appropriate DevSecOps into the pipeline and identify the inherent security issues within the codebase
 
