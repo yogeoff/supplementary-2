@@ -161,6 +161,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-jakarta-servlet6
     implementation 'org.apache.commons:commons-fileupload2-jakarta-servlet6:2.0.0-M2'
+
+    // https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api
+    implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '4.0.2'
 }
 
 test {
