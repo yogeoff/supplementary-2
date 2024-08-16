@@ -9,7 +9,7 @@ Tasks completed:
     - [x] Migrate the build scripts to use Kotlin DSL instead of Groovy
     - [x] Update the project to use the latest versions of the specified dependencies
 - [ ] Create a CI/CD pipeline for the project in GitHub Actions
-    - [x] Create branch protection rules for the repository 
+    - [ ] Create branch protection rules for the repository 
     - [ ] Create basic pipeline
 - [ ] Implement appropriate DevSecOps into the pipeline and identify the inherent security issues within the codebase
 
