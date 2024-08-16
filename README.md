@@ -11,7 +11,7 @@ Tasks completed:
 - [ ] Create a CI/CD pipeline for the project in GitHub Actions
     - [ ] Create branch protection rules for the repository
     - [x] Add a contributor to review pull requests
-    - [x] Disable circumventing the branch protection rules
+    - [ ] Disable circumventing the branch protection rules
     - [ ] Create basic pipeline
 - [ ] Implement appropriate DevSecOps into the pipeline and identify the inherent security issues within the codebase
 
