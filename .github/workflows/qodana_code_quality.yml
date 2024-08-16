@@ -11,12 +11,16 @@ on:
 jobs:
   qodana:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Qodana scan
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
+          fetch-depth: 0  # a full history is required for pull request analysis
+      - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2024.1
         env:
-          project_open_type: 'Gradle'
-          QODANA_TOKEN: ${{ secrets.QODANA_SECRET }}
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
