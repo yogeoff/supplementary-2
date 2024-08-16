@@ -18,5 +18,5 @@ jobs:
       - name: Qodana scan
         uses: JetBrains/qodana-action@v2024.1
         env:
-          project.open.type: 'Gradle'
+          project_open_type: 'Gradle'
           QODANA_TOKEN: ${{ secrets.QODANA_SECRET }}
