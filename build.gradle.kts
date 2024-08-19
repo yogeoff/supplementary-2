@@ -2,9 +2,9 @@
 plugins {
     id("com.diffplug.spotless") version "5.6.1";
     id("com.google.cloud.tools.jib") version "3.3.1";
-    id("org.sonarqube") version "3.3";
     id("org.springframework.boot") version "3.3.2";
     id("jacoco");
+    id("org.sonarqube") version "3.5.0.2730";
     id("java");
     id("eclipse");
     id("idea");
