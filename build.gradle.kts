@@ -97,6 +97,14 @@ jib {
     }
 }
 
+sonar {
+  properties {
+    property("sonar.projectKey", "yogeoff_supplementary-2")
+    property("sonar.organization", "yogeoff-sonarqube-supplementary-2")
+    property("sonar.host.url", "https://sonarcloud.io")
+  }
+}
+
 jacoco {
     toolVersion = "0.8.5"
     reportsDirectory = file("${layout.buildDirectory}/reports/jacoco.xml")
