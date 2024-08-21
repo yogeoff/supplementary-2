@@ -4,7 +4,7 @@ plugins {
     id("com.google.cloud.tools.jib") version "3.3.1";
     id("org.springframework.boot") version "3.3.2";
     id("jacoco");
-    id("org.sonarqube") version "3.3";
+    id("org.sonarqube") version "4.4.1.3373";
     id("java");
     id("eclipse");
     id("idea");
@@ -38,13 +38,11 @@ repositories {
     mavenLocal()
 }
 
-sonarqube {
+sonar {
   properties {
-    property("sonar.projectKey", "SasanLabs_VulnerableApp");
-    property("sonar.organization", "sasanlabs");
-    property("sonar.host.url", "https://sonarcloud.io");
-    property("sonar.java.source", "1.8");
-    property("sonar.java.target", "1.8");
+    property("sonar.projectKey", "yogeoff_supplementary-2")
+    property("sonar.organization", "yogeoff-sonarqube-supplementary-2")
+    property("sonar.host.url", "https://sonarcloud.io")
   }
 }
 
@@ -95,14 +93,6 @@ jib {
             }
         }
     }
-}
-
-sonar {
-  properties {
-    property("sonar.projectKey", "yogeoff_supplementary-2")
-    property("sonar.organization", "yogeoff-sonarqube-supplementary-2")
-    property("sonar.host.url", "https://sonarcloud.io")
-  }
 }
 
 jacoco {
