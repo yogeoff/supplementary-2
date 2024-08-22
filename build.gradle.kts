@@ -39,11 +39,11 @@ repositories {
 }
 
 sonar {
-  properties {
-    property("sonar.projectKey", "yogeoff_supplementary-2")
-    property("sonar.organization", "yogeoff-sonarqube-supplementary-2")
-    property("sonar.host.url", "https://sonarcloud.io")
-  }
+    properties {
+        property("sonar.projectKey", "yogeoff_supplementary-2")
+        property("sonar.organization", "yogeoff-sonarqube-supplementary-2")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
 
 spotless {
@@ -53,16 +53,16 @@ spotless {
         googleJavaFormat("1.23.0")
     }
     format("javascript") {
-    	target("src/main/resources/**/*.js");
+        target("src/main/resources/**/*.js");
 //    	prettier().configFile("file.js");
-  	}
+    }
 }
 
 jib {
     to {
         image = "sasanlabs/owasp-vulnerableapp:unreleased"
     }
-    
+
     // Set up multi-platform build only if the task is not :jibDockerBuild
     if (!project.gradle.startParameter.taskNames.contains("jibDockerBuild")) {
         logger.info("JIB: Enabling Multi-Platform Images")
@@ -96,26 +96,27 @@ jib {
 }
 
 jacoco {
-    toolVersion = "0.8.5"
-    reportsDirectory = file("${layout.buildDirectory}/reports/jacoco.xml")
+    toolVersion = "0.8.10"
+//    reportsDirectory.set(file("$layout.buildDirectory/jacoco"))
+//    reportsDirectory = file("${layout.buildDirectory}/reports/jacoco.xml")
 }
 
-tasks.register("GenerateSampleVulnerability"){
-	group = "SasanLabs"
-	description = "Generates Sample Vulnerability template"
-	println("Copying SampleVulnerability java file to org.sasanlabs.service.vulnerability.sampleVulnerability package");
-	copy {
-    	from(file("src/main/resources/sampleVulnerability/sampleVulnerability"))
-    	into(file("src/main/java/org/sasanlabs/service/vulnerability/sampleVulnerability"))
+tasks.register("GenerateSampleVulnerability") {
+    group = "SasanLabs"
+    description = "Generates Sample Vulnerability template"
+    println("Copying SampleVulnerability java file to org.sasanlabs.service.vulnerability.sampleVulnerability package");
+    copy {
+        from(file("src/main/resources/sampleVulnerability/sampleVulnerability"))
+        into(file("src/main/java/org/sasanlabs/service/vulnerability/sampleVulnerability"))
     };
     println("Copy of java file is completed");
     println("Copying SampleVulnerability html/css/js files to static/templates/SampleVulnerability/LEVEL_1");
     copy {
-    	from(file("src/main/resources/sampleVulnerability/staticResources/LEVEL_1"))
-    	into(file("src/main/resources/static/templates/SampleVulnerability/LEVEL_1"))
+        from(file("src/main/resources/sampleVulnerability/staticResources/LEVEL_1"))
+        into(file("src/main/resources/static/templates/SampleVulnerability/LEVEL_1"))
     };
     println("Copy of html/css/js files is completed");
-    println ("SampleVulnerability is generated !!!");
+    println("SampleVulnerability is generated !!!");
     enabled = false;
 }
 
@@ -135,21 +136,21 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.3.2");
 
     runtimeOnly("com.h2database:h2:2.2.220");
-    
+
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation("org.apache.commons:commons-text:1.10.0");
-	//Log4j Dependencies
+    //Log4j Dependencies
     implementation("org.springframework.boot:spring-boot-starter-log4j2:3.3.2");
 
     // https://mvnrepository.com/artifact/org.json/json
     implementation("org.json:json:20231013");
 
-	//https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
+    //https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
     implementation("com.nimbusds:nimbus-jose-jwt:9.37.2");
 
     // https://mvnrepository.com/artifact/commons-io/commons-io
     implementation("commons-io:commons-io:2.7");
-    
+
     implementation("io.github.sasanlabs:facade-schema:1.0.1");
 
     // https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-jakarta-servlet6
@@ -162,8 +163,21 @@ dependencies {
 tasks {
     test {
         useJUnitPlatform();
+
+        extensions.configure<JacocoTaskExtension> {
+            excludes =
+                listOf(
+                    "jdk.internal.*",
+                    "java.*",
+                    "javax.*",
+                    "sun.*",
+                    "com.sun.*",
+                    "org.apache.*" // Add any other third-party packages to exclude
+                )
+        }
+
         finalizedBy("jacocoTestReport");
-    }
+        }
 
     jacocoTestReport {
         dependsOn("test");
@@ -171,7 +185,9 @@ tasks {
             xml.required.set(true);
             html.required.set(true);
             csv.required.set(true);
-            xml.outputLocation = file("${layout.buildDirectory}/reports/jacoco.xml");
+            xml.outputLocation.set(file("${layout.buildDirectory.get()}/reports/jacoco.xml"));
+            html.outputLocation.set(file("${layout.buildDirectory.get()}/reports/jacocoHtml"));
+            csv.outputLocation.set(file("${layout.buildDirectory.get()}/reports/jacoco/csv"));
         }
     }
 }
