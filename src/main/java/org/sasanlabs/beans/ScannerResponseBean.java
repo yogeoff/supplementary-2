@@ -1,9 +1,10 @@
 package org.sasanlabs.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import org.sasanlabs.vulnerability.types.VulnerabilityType;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * This class represents the response which is used by the scanners for executing attacks on the
@@ -30,10 +31,10 @@ public class ScannerResponseBean {
   private List<VulnerabilityType> vulnerabilityTypes;
 
   public ScannerResponseBean(
-      String url,
-      String variant,
-      RequestMethod requestMethod,
-      List<VulnerabilityType> vulnerabilityTypes) {
+          String url,
+          String variant,
+          RequestMethod requestMethod,
+          List<VulnerabilityType> vulnerabilityTypes) {
     super();
     this.url = url;
     this.variant = variant;

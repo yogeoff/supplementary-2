@@ -1,12 +1,13 @@
 package org.sasanlabs.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.sasanlabs.internal.utility.LevelConstants;
 import org.sasanlabs.internal.utility.Variant;
 import org.sasanlabs.internal.utility.annotations.RequestParameterLocation;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author KSASAN preetkaran20@gmail.com
@@ -109,13 +110,13 @@ public class LevelResponseBean implements Comparable<LevelResponseBean> {
   }
 
   public void setAttackVectorResponseBeans(
-      List<AttackVectorResponseBean> attackVectorResponseBeans) {
+          List<AttackVectorResponseBean> attackVectorResponseBeans) {
     this.attackVectorResponseBeans = attackVectorResponseBeans;
   }
 
   @Override
   public int compareTo(LevelResponseBean levelResponseBean) {
     return LevelConstants.getOrdinal(this.level)
-        - LevelConstants.getOrdinal(levelResponseBean.getLevel());
+            - LevelConstants.getOrdinal(levelResponseBean.getLevel());
   }
 }

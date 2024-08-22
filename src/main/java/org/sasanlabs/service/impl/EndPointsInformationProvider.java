@@ -31,10 +31,10 @@ import java.util.Map;
 @Service
 public class EndPointsInformationProvider implements IEndPointsInformationProvider {
 
-  int port;
   private final EnvUtils envUtils;
   private final MessageBundle messageBundle;
   private final VulnerableAppProperties vulnerableAppProperties;
+  int port;
 
   public EndPointsInformationProvider(
           EnvUtils envUtils,
