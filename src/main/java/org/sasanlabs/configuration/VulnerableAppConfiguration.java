@@ -1,17 +1,7 @@
 package org.sasanlabs.configuration;
 
 import com.zaxxer.hikari.HikariDataSource;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Properties;
-
 import jakarta.servlet.http.HttpServletRequest;
-
-import javax.sql.DataSource;
-
 import org.sasanlabs.internal.utility.LevelConstants;
 import org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,9 +18,16 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
 
 /**
  * This is the Configuration Class for Injecting Configurations into the Context.
@@ -44,7 +41,7 @@ public class VulnerableAppConfiguration {
   private static final String ATTACK_VECTOR_PAYLOAD_PROPERTY_FILES_LOCATION_PATTERN =
           "classpath:/attackvectors/*.properties";
   private static final List<String> MAX_FILE_UPLOAD_SIZE_OVERRIDE_PATHS =
-          Arrays.asList(
+          List.of(
                   "/" + UnrestrictedFileUpload.CONTROLLER_PATH + "/" + LevelConstants.LEVEL_9);
 
   /**
@@ -163,7 +160,6 @@ public class VulnerableAppConfiguration {
         }
       }
     }
-    ;
     return new MaxUploadSizeOverrideMultipartFilter();
   }
 }

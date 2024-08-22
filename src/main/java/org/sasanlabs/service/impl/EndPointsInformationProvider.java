@@ -1,14 +1,6 @@
 package org.sasanlabs.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import java.lang.reflect.Method;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import org.sasanlabs.beans.AllEndPointsResponseBean;
 import org.sasanlabs.beans.AttackVectorResponseBean;
 import org.sasanlabs.beans.LevelResponseBean;
@@ -22,16 +14,16 @@ import org.sasanlabs.internal.utility.annotations.AttackVector;
 import org.sasanlabs.internal.utility.annotations.VulnerableAppRequestMapping;
 import org.sasanlabs.internal.utility.annotations.VulnerableAppRestController;
 import org.sasanlabs.service.IEndPointsInformationProvider;
-import org.sasanlabs.vulnerableapp.facade.schema.ResourceInformation;
-import org.sasanlabs.vulnerableapp.facade.schema.ResourceType;
-import org.sasanlabs.vulnerableapp.facade.schema.ResourceURI;
-import org.sasanlabs.vulnerableapp.facade.schema.Variant;
-import org.sasanlabs.vulnerableapp.facade.schema.VulnerabilityDefinition;
-import org.sasanlabs.vulnerableapp.facade.schema.VulnerabilityLevelDefinition;
-import org.sasanlabs.vulnerableapp.facade.schema.VulnerabilityLevelHint;
-import org.sasanlabs.vulnerableapp.facade.schema.VulnerabilityType;
+import org.sasanlabs.vulnerableapp.facade.schema.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Method;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author KSASAN preetkaran20@gmail.com
@@ -39,13 +31,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class EndPointsInformationProvider implements IEndPointsInformationProvider {
 
-  private EnvUtils envUtils;
-
-  private MessageBundle messageBundle;
-
-  private VulnerableAppProperties vulnerableAppProperties;
-
   int port;
+  private final EnvUtils envUtils;
+  private final MessageBundle messageBundle;
+  private final VulnerableAppProperties vulnerableAppProperties;
 
   public EndPointsInformationProvider(
           EnvUtils envUtils,
@@ -121,18 +110,16 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
                 levelResponseBean.getAttackVectorResponseBeans()) {
           scannerResponseBeans.add(
                   new ScannerResponseBean(
-                          new StringBuilder()
-                                  .append(FrameworkConstants.HTTP)
-                                  .append(GenericUtils.LOCALHOST)
-                                  .append(FrameworkConstants.COLON)
-                                  .append(port)
-                                  .append(FrameworkConstants.SLASH)
-                                  .append(FrameworkConstants.VULNERABLE_APP)
-                                  .append(FrameworkConstants.SLASH)
-                                  .append(allEndPointsResponseBean.getName())
-                                  .append(FrameworkConstants.SLASH)
-                                  .append(levelResponseBean.getLevel())
-                                  .toString(),
+                          FrameworkConstants.HTTP +
+                                  GenericUtils.LOCALHOST +
+                                  FrameworkConstants.COLON +
+                                  port +
+                                  FrameworkConstants.SLASH +
+                                  FrameworkConstants.VULNERABLE_APP +
+                                  FrameworkConstants.SLASH +
+                                  allEndPointsResponseBean.getName() +
+                                  FrameworkConstants.SLASH +
+                                  levelResponseBean.getLevel(),
                           levelResponseBean.getVariant().toString(),
                           levelResponseBean.getRequestMethod(),
                           attackVectorResponseBean.getVulnerabilityTypes()));

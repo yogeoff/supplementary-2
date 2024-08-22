@@ -1,11 +1,6 @@
 package org.sasanlabs.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.List;
-
 import org.sasanlabs.beans.AllEndPointsResponseBean;
 import org.sasanlabs.beans.ScannerMetaResponseBean;
 import org.sasanlabs.beans.ScannerResponseBean;
@@ -21,15 +16,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author KSASAN preetkaran20@gmail.com
  */
 @RestController
 public class VulnerableAppRestController {
 
-  private IEndPointsInformationProvider getAllSupportedEndPoints;
+  private final IEndPointsInformationProvider getAllSupportedEndPoints;
 
-  private int port;
+  private final int port;
 
   public VulnerableAppRestController(
           IEndPointsInformationProvider getAllSupportedEndPoints,
