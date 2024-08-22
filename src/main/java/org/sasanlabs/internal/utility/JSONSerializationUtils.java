@@ -30,12 +30,12 @@ public final class JSONSerializationUtils {
   }
 
   public static <T> T deserialize(InputStream in, TypeReference<T> typeReference)
-          throws JsonParseException, JsonMappingException, IOException {
+          throws IOException {
     return MAPPER.readValue(in, typeReference);
   }
 
   public static <T> T deserialize(InputStream in, Class<T> clazz)
-          throws JsonParseException, JsonMappingException, IOException {
+          throws IOException {
     return MAPPER.readValue(in, clazz);
   }
 }
