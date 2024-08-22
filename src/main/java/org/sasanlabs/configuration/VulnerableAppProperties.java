@@ -11,9 +11,7 @@ import java.util.Properties;
  */
 public class VulnerableAppProperties {
 
-  /**
-   * Contains all the properties present in {@code attackvectors/*.properties}
-   */
+  /** Contains all the properties present in {@code attackvectors/*.properties} */
   private final Properties attackVectorProperties;
 
   public VulnerableAppProperties(Properties attackVectorProperties) {

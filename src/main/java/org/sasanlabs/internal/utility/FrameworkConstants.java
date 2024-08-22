@@ -10,7 +10,7 @@ public interface FrameworkConstants {
   // Site map related constants
   String GENERAL_XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
   String SITEMAP_URLSET_TAG_START =
-          "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" >\n";
+      "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" >\n";
   String SITEMAP_URL_TAG_START = "<url>";
   String SITEMAP_URL_TAG_END = "</url>";
   String SITEMAP_LOC_TAG_START = "<loc>";

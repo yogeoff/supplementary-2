@@ -19,8 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-  private static final Logger LOGGER =
-          LogManager.getLogger(ControllerExceptionHandler.class);
+  private static final Logger LOGGER = LogManager.getLogger(ControllerExceptionHandler.class);
   private final MessageBundle messageBundle;
 
   public ControllerExceptionHandler(MessageBundle messageBundle) {
@@ -29,18 +28,18 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(ControllerException.class)
   public ResponseEntity<String> handleControllerExceptions(
-          ControllerException ex, WebRequest request) {
+      ControllerException ex, WebRequest request) {
     LOGGER.error("Controller Exception Occurred :-", ex);
     return new ResponseEntity<String>(
-            ex.getExceptionStatusCode().getMessage(ex.getArgs(), messageBundle),
-            HttpStatus.INTERNAL_SERVER_ERROR);
+        ex.getExceptionStatusCode().getMessage(ex.getArgs(), messageBundle),
+        HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<String> handleExceptions(Exception ex, WebRequest request) {
     LOGGER.error("General Exception Occurred :- ", ex);
     return new ResponseEntity<String>(
-            ExceptionStatusCodeEnum.SYSTEM_ERROR.getMessage(null, messageBundle),
-            HttpStatus.INTERNAL_SERVER_ERROR);
+        ExceptionStatusCodeEnum.SYSTEM_ERROR.getMessage(null, messageBundle),
+        HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

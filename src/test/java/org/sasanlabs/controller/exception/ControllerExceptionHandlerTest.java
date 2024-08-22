@@ -1,5 +1,11 @@
 package org.sasanlabs.controller.exception;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -11,20 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.WebRequest;
 
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 class ControllerExceptionHandlerTest {
 
-  @Mock
-  private MessageBundle messageBundle;
+  @Mock private MessageBundle messageBundle;
 
-  @Mock
-  private WebRequest webRequest;
+  @Mock private WebRequest webRequest;
 
   private ControllerExceptionHandler controllerExceptionHandler;
 
@@ -39,13 +36,13 @@ class ControllerExceptionHandlerTest {
     // Arrange
     when(messageBundle.getString(any(), any())).thenReturn("Exception occurred");
     ServiceApplicationException serviceApplicationException =
-            new ServiceApplicationException(
-                    ExceptionStatusCodeEnum.SYSTEM_ERROR, new NullPointerException("ex"));
+        new ServiceApplicationException(
+            ExceptionStatusCodeEnum.SYSTEM_ERROR, new NullPointerException("ex"));
 
     // Act
     ResponseEntity<String> responseEntity =
-            controllerExceptionHandler.handleControllerExceptions(
-                    new ControllerException(serviceApplicationException), webRequest);
+        controllerExceptionHandler.handleControllerExceptions(
+            new ControllerException(serviceApplicationException), webRequest);
 
     // Assert
     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
@@ -60,8 +57,8 @@ class ControllerExceptionHandlerTest {
 
     // Act
     ResponseEntity<String> responseEntity =
-            controllerExceptionHandler.handleExceptions(
-                    new IOException("IO operation failed"), webRequest);
+        controllerExceptionHandler.handleExceptions(
+            new IOException("IO operation failed"), webRequest);
 
     // Assert
     assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());

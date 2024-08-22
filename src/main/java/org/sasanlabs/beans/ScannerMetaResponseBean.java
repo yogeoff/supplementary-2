@@ -1,10 +1,9 @@
 package org.sasanlabs.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import org.sasanlabs.internal.utility.annotations.RequestParameterLocation;
 import org.sasanlabs.vulnerability.types.VulnerabilityType;
-
-import java.util.List;
 
 /**
  * This class represents the meta data about the data provided by scanner endpoint. This is useful
@@ -23,8 +22,8 @@ public class ScannerMetaResponseBean {
   private List<RequestParameterLocation> availableLocations;
 
   public ScannerMetaResponseBean(
-          List<VulnerabilityType> availableVulnerabilityTypes,
-          List<RequestParameterLocation> availableLocations) {
+      List<VulnerabilityType> availableVulnerabilityTypes,
+      List<RequestParameterLocation> availableLocations) {
     super();
     this.availableVulnerabilityTypes = availableVulnerabilityTypes;
     this.availableLocations = availableLocations;

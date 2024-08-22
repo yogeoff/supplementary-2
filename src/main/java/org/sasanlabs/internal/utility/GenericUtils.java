@@ -9,8 +9,7 @@ public final class GenericUtils {
 
   public static final String LOCALHOST = "127.0.0.1";
 
-  private GenericUtils() {
-  }
+  private GenericUtils() {}
 
   /**
    * @param payload
@@ -20,7 +19,7 @@ public final class GenericUtils {
   @Deprecated
   public static String wrapPayloadInGenericVulnerableAppTemplate(String payload) {
     String generalPayload =
-            "<html><title>Security Testing</title><body><h1>Vulnerable Application </h1> %s </body></html>";
+        "<html><title>Security Testing</title><body><h1>Vulnerable Application </h1> %s </body></html>";
     return String.format(generalPayload, payload);
   }
 }

@@ -1,6 +1,12 @@
 package org.sasanlabs.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.lang.reflect.Method;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import org.sasanlabs.beans.AllEndPointsResponseBean;
 import org.sasanlabs.beans.AttackVectorResponseBean;
 import org.sasanlabs.beans.LevelResponseBean;
@@ -18,13 +24,6 @@ import org.sasanlabs.vulnerableapp.facade.schema.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Method;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 /**
  * @author KSASAN preetkaran20@gmail.com
  */
@@ -37,10 +36,10 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
   int port;
 
   public EndPointsInformationProvider(
-          EnvUtils envUtils,
-          MessageBundle messageBundle,
-          VulnerableAppProperties vulnerableAppProperties,
-          @Value("${server.port}") int port) {
+      EnvUtils envUtils,
+      MessageBundle messageBundle,
+      VulnerableAppProperties vulnerableAppProperties,
+      @Value("${server.port}") int port) {
     this.envUtils = envUtils;
     this.messageBundle = messageBundle;
     this.vulnerableAppProperties = vulnerableAppProperties;
@@ -51,13 +50,13 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
   public List<AllEndPointsResponseBean> getSupportedEndPoints() throws JsonProcessingException {
     List<AllEndPointsResponseBean> allEndpoints = new ArrayList<>();
     Map<String, Object> nameVsCustomVulnerableEndPoint =
-            envUtils.getAllClassesAnnotatedWithVulnerableAppRestController();
+        envUtils.getAllClassesAnnotatedWithVulnerableAppRestController();
     for (Map.Entry<String, Object> entry : nameVsCustomVulnerableEndPoint.entrySet()) {
       String name = entry.getKey();
       Class<?> clazz = entry.getValue().getClass();
       if (clazz.isAnnotationPresent(VulnerableAppRestController.class)) {
         VulnerableAppRestController vulnerableServiceRestEndPoint =
-                clazz.getAnnotation(VulnerableAppRestController.class);
+            clazz.getAnnotation(VulnerableAppRestController.class);
         String description = vulnerableServiceRestEndPoint.descriptionLabel();
         AllEndPointsResponseBean allEndPointsResponseBean = new AllEndPointsResponseBean();
         allEndPointsResponseBean.setName(name);
@@ -66,10 +65,9 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
           VulnerableAppRequestMapping vulnLevel =
-                  method.getAnnotation(VulnerableAppRequestMapping.class);
+              method.getAnnotation(VulnerableAppRequestMapping.class);
           if (vulnLevel != null) {
-            AttackVector[] attackVectors =
-                    method.getAnnotationsByType(AttackVector.class);
+            AttackVector[] attackVectors = method.getAnnotationsByType(AttackVector.class);
             LevelResponseBean levelResponseBean = new LevelResponseBean();
             levelResponseBean.setLevel(vulnLevel.value());
             levelResponseBean.setVariant(vulnLevel.variant());
@@ -77,17 +75,12 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
             levelResponseBean.setRequestMethod(vulnLevel.requestMethod());
             for (AttackVector attackVector : attackVectors) {
               levelResponseBean
-                      .getAttackVectorResponseBeans()
-                      .add(
-                              new AttackVectorResponseBean(
-                                      new ArrayList<>(
-                                              Arrays.asList(
-                                                      attackVector
-                                                              .vulnerabilityExposed())),
-                                      vulnerableAppProperties.getAttackVectorProperty(
-                                              attackVector.payload()),
-                                      messageBundle.getString(
-                                              attackVector.description(), null)));
+                  .getAttackVectorResponseBeans()
+                  .add(
+                      new AttackVectorResponseBean(
+                          new ArrayList<>(Arrays.asList(attackVector.vulnerabilityExposed())),
+                          vulnerableAppProperties.getAttackVectorProperty(attackVector.payload()),
+                          messageBundle.getString(attackVector.description(), null)));
             }
             allEndPointsResponseBean.getLevelDescriptionSet().add(levelResponseBean);
           }
@@ -100,29 +93,29 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
 
   @Override
   public List<ScannerResponseBean> getScannerRelatedEndPointInformation()
-          throws JsonProcessingException, UnknownHostException {
+      throws JsonProcessingException, UnknownHostException {
     List<AllEndPointsResponseBean> allEndPointsResponseBeans = this.getSupportedEndPoints();
     List<ScannerResponseBean> scannerResponseBeans = new ArrayList<>();
     for (AllEndPointsResponseBean allEndPointsResponseBean : allEndPointsResponseBeans) {
       for (LevelResponseBean levelResponseBean :
-              allEndPointsResponseBean.getLevelDescriptionSet()) {
+          allEndPointsResponseBean.getLevelDescriptionSet()) {
         for (AttackVectorResponseBean attackVectorResponseBean :
-                levelResponseBean.getAttackVectorResponseBeans()) {
+            levelResponseBean.getAttackVectorResponseBeans()) {
           scannerResponseBeans.add(
-                  new ScannerResponseBean(
-                          FrameworkConstants.HTTP +
-                                  GenericUtils.LOCALHOST +
-                                  FrameworkConstants.COLON +
-                                  port +
-                                  FrameworkConstants.SLASH +
-                                  FrameworkConstants.VULNERABLE_APP +
-                                  FrameworkConstants.SLASH +
-                                  allEndPointsResponseBean.getName() +
-                                  FrameworkConstants.SLASH +
-                                  levelResponseBean.getLevel(),
-                          levelResponseBean.getVariant().toString(),
-                          levelResponseBean.getRequestMethod(),
-                          attackVectorResponseBean.getVulnerabilityTypes()));
+              new ScannerResponseBean(
+                  FrameworkConstants.HTTP
+                      + GenericUtils.LOCALHOST
+                      + FrameworkConstants.COLON
+                      + port
+                      + FrameworkConstants.SLASH
+                      + FrameworkConstants.VULNERABLE_APP
+                      + FrameworkConstants.SLASH
+                      + allEndPointsResponseBean.getName()
+                      + FrameworkConstants.SLASH
+                      + levelResponseBean.getLevel(),
+                  levelResponseBean.getVariant().toString(),
+                  levelResponseBean.getRequestMethod(),
+                  attackVectorResponseBean.getVulnerabilityTypes()));
         }
       }
     }
@@ -130,108 +123,99 @@ public class EndPointsInformationProvider implements IEndPointsInformationProvid
   }
 
   private void addFacadeResourceInformation(
-          VulnerabilityDefinition facadeVulnerabilityDefinition,
-          VulnerabilityLevelDefinition facadeVulnerabilityLevelDefinition,
-          String template) {
+      VulnerabilityDefinition facadeVulnerabilityDefinition,
+      VulnerabilityLevelDefinition facadeVulnerabilityLevelDefinition,
+      String template) {
     ResourceInformation resourceInformation = new ResourceInformation();
     facadeVulnerabilityLevelDefinition.setResourceInformation(resourceInformation);
     resourceInformation.setStaticResources(
-            Arrays.asList(
-                    new ResourceURI(
-                            false,
-                            "/VulnerableApp/templates/"
-                                    + facadeVulnerabilityDefinition.getName()
-                                    + "/"
-                                    + template
-                                    + ".css",
-                            ResourceType.CSS.name()),
-                    new ResourceURI(
-                            false,
-                            "/VulnerableApp/templates/"
-                                    + facadeVulnerabilityDefinition.getName()
-                                    + "/"
-                                    + template
-                                    + ".js",
-                            ResourceType.JAVASCRIPT.name())));
-    resourceInformation.setHtmlResource(
+        Arrays.asList(
             new ResourceURI(
-                    false,
-                    "/VulnerableApp/templates/"
-                            + facadeVulnerabilityDefinition.getName()
-                            + "/"
-                            + template
-                            + ".html"));
+                false,
+                "/VulnerableApp/templates/"
+                    + facadeVulnerabilityDefinition.getName()
+                    + "/"
+                    + template
+                    + ".css",
+                ResourceType.CSS.name()),
+            new ResourceURI(
+                false,
+                "/VulnerableApp/templates/"
+                    + facadeVulnerabilityDefinition.getName()
+                    + "/"
+                    + template
+                    + ".js",
+                ResourceType.JAVASCRIPT.name())));
+    resourceInformation.setHtmlResource(
+        new ResourceURI(
+            false,
+            "/VulnerableApp/templates/"
+                + facadeVulnerabilityDefinition.getName()
+                + "/"
+                + template
+                + ".html"));
   }
 
   @Override
   public List<VulnerabilityDefinition> getVulnerabilityDefinitions()
-          throws JsonProcessingException {
+      throws JsonProcessingException {
     List<VulnerabilityDefinition> vulnerabilityDefinitions = new ArrayList<>();
     Map<String, Object> nameVsCustomVulnerableEndPoint =
-            envUtils.getAllClassesAnnotatedWithVulnerableAppRestController();
+        envUtils.getAllClassesAnnotatedWithVulnerableAppRestController();
     for (Map.Entry<String, Object> entry : nameVsCustomVulnerableEndPoint.entrySet()) {
       String name = entry.getKey();
       Class<?> clazz = entry.getValue().getClass();
       if (clazz.isAnnotationPresent(VulnerableAppRestController.class)) {
         VulnerableAppRestController vulnerableServiceRestEndPoint =
-                clazz.getAnnotation(VulnerableAppRestController.class);
+            clazz.getAnnotation(VulnerableAppRestController.class);
         String description = vulnerableServiceRestEndPoint.descriptionLabel();
-        VulnerabilityDefinition facadeVulnerabilityDefinition =
-                new VulnerabilityDefinition();
+        VulnerabilityDefinition facadeVulnerabilityDefinition = new VulnerabilityDefinition();
         facadeVulnerabilityDefinition.setName(name);
         facadeVulnerabilityDefinition.setId(name);
-        facadeVulnerabilityDefinition.setDescription(
-                messageBundle.getString(description, null));
-        List<VulnerabilityType> facadeVulnerabilityTypes =
-                new ArrayList<VulnerabilityType>();
+        facadeVulnerabilityDefinition.setDescription(messageBundle.getString(description, null));
+        List<VulnerabilityType> facadeVulnerabilityTypes = new ArrayList<VulnerabilityType>();
         facadeVulnerabilityDefinition.setVulnerabilityTypes(facadeVulnerabilityTypes);
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods) {
           VulnerableAppRequestMapping vulnLevel =
-                  method.getAnnotation(VulnerableAppRequestMapping.class);
+              method.getAnnotation(VulnerableAppRequestMapping.class);
           if (vulnLevel != null) {
-            AttackVector[] attackVectors =
-                    method.getAnnotationsByType(AttackVector.class);
+            AttackVector[] attackVectors = method.getAnnotationsByType(AttackVector.class);
             VulnerabilityLevelDefinition facadeVulnerabilityLevelDefinition =
-                    new VulnerabilityLevelDefinition();
+                new VulnerabilityLevelDefinition();
             facadeVulnerabilityLevelDefinition.setLevel(vulnLevel.value());
             facadeVulnerabilityLevelDefinition.setVariant(
-                    Variant.valueOf(vulnLevel.variant().name()));
+                Variant.valueOf(vulnLevel.variant().name()));
             addFacadeResourceInformation(
-                    facadeVulnerabilityDefinition,
-                    facadeVulnerabilityLevelDefinition,
-                    vulnLevel.htmlTemplate());
+                facadeVulnerabilityDefinition,
+                facadeVulnerabilityLevelDefinition,
+                vulnLevel.htmlTemplate());
             for (AttackVector attackVector : attackVectors) {
               List<VulnerabilityType> facadeLevelVulnerabilityTypes =
-                      new ArrayList<VulnerabilityType>();
-              org.sasanlabs.vulnerability.types.VulnerabilityType[]
-                      vulnerabilityTypes = attackVector.vulnerabilityExposed();
-              for (org.sasanlabs.vulnerability.types.VulnerabilityType
-                      vulnerabilityType : vulnerabilityTypes) {
+                  new ArrayList<VulnerabilityType>();
+              org.sasanlabs.vulnerability.types.VulnerabilityType[] vulnerabilityTypes =
+                  attackVector.vulnerabilityExposed();
+              for (org.sasanlabs.vulnerability.types.VulnerabilityType vulnerabilityType :
+                  vulnerabilityTypes) {
                 facadeLevelVulnerabilityTypes.add(
-                        new VulnerabilityType("Custom", vulnerabilityType.name()));
+                    new VulnerabilityType("Custom", vulnerabilityType.name()));
                 if (null != vulnerabilityType.getCweID())
                   facadeLevelVulnerabilityTypes.add(
-                          new VulnerabilityType(
-                                  "CWE",
-                                  String.valueOf(vulnerabilityType.getCweID())));
+                      new VulnerabilityType("CWE", String.valueOf(vulnerabilityType.getCweID())));
                 if (null != vulnerabilityType.getWascID())
                   facadeLevelVulnerabilityTypes.add(
-                          new VulnerabilityType(
-                                  "WASC",
-                                  String.valueOf(vulnerabilityType.getWascID())));
+                      new VulnerabilityType("WASC", String.valueOf(vulnerabilityType.getWascID())));
               }
               facadeVulnerabilityLevelDefinition
-                      .getHints()
-                      .add(
-                              new VulnerabilityLevelHint(
-                                      facadeLevelVulnerabilityTypes,
-                                      messageBundle.getString(
-                                              attackVector.description(), null)));
+                  .getHints()
+                  .add(
+                      new VulnerabilityLevelHint(
+                          facadeLevelVulnerabilityTypes,
+                          messageBundle.getString(attackVector.description(), null)));
             }
             facadeVulnerabilityDefinition
-                    .getLevelDescriptionSet()
-                    .add(facadeVulnerabilityLevelDefinition);
+                .getLevelDescriptionSet()
+                .add(facadeVulnerabilityLevelDefinition);
           }
         }
         vulnerabilityDefinitions.add(facadeVulnerabilityDefinition);

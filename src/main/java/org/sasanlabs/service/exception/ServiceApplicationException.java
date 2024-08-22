@@ -10,23 +10,23 @@ public class ServiceApplicationException extends Exception {
   private Object[] args;
 
   public ServiceApplicationException(
-          ExceptionStatusCodeEnum exceptionStatusCodeEnum, Object... args) {
+      ExceptionStatusCodeEnum exceptionStatusCodeEnum, Object... args) {
     this.exceptionStatusCode = exceptionStatusCodeEnum;
     this.setArgs(args);
   }
 
   public ServiceApplicationException(
-          String message, ExceptionStatusCodeEnum exceptionStatusCodeEnum, Object... args) {
+      String message, ExceptionStatusCodeEnum exceptionStatusCodeEnum, Object... args) {
     super(message);
     this.exceptionStatusCode = exceptionStatusCodeEnum;
     this.setArgs(args);
   }
 
   public ServiceApplicationException(
-          String message,
-          Throwable throwable,
-          ExceptionStatusCodeEnum exceptionStatusCodeEnum,
-          Object... args) {
+      String message,
+      Throwable throwable,
+      ExceptionStatusCodeEnum exceptionStatusCodeEnum,
+      Object... args) {
     super(message, throwable);
     this.exceptionStatusCode = exceptionStatusCodeEnum;
     this.setArgs(args);
