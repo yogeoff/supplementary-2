@@ -3,7 +3,6 @@ package org.sasanlabs.internal.utility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -16,8 +15,7 @@ public final class JSONSerializationUtils {
 
   private static final ObjectMapper MAPPER = new ObjectMapper();
 
-  private JSONSerializationUtils() {
-  }
+  private JSONSerializationUtils() {}
 
   public static <T> String serialize(T object) throws JsonProcessingException {
     return MAPPER.writeValueAsString(object);
@@ -28,12 +26,11 @@ public final class JSONSerializationUtils {
   }
 
   public static <T> T deserialize(InputStream in, TypeReference<T> typeReference)
-          throws IOException {
+      throws IOException {
     return MAPPER.readValue(in, typeReference);
   }
 
-  public static <T> T deserialize(InputStream in, Class<T> clazz)
-          throws IOException {
+  public static <T> T deserialize(InputStream in, Class<T> clazz) throws IOException {
     return MAPPER.readValue(in, clazz);
   }
 }

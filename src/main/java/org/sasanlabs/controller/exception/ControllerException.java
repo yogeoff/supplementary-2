@@ -13,10 +13,10 @@ public class ControllerException extends Exception {
   private Object[] args;
 
   public ControllerException(
-          String message,
-          Throwable throwable,
-          ExceptionStatusCodeEnum exceptionStatusCodeEnum,
-          Object[] args) {
+      String message,
+      Throwable throwable,
+      ExceptionStatusCodeEnum exceptionStatusCodeEnum,
+      Object[] args) {
     super(message, throwable);
     this.exceptionStatusCode = exceptionStatusCodeEnum;
     this.args = args;

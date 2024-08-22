@@ -1,12 +1,11 @@
 package org.sasanlabs.internal.utility;
 
+import java.util.Map;
 import org.sasanlabs.internal.utility.annotations.VulnerableAppRestController;
 import org.sasanlabs.service.exception.ExceptionStatusCodeEnum;
 import org.sasanlabs.service.exception.ServiceApplicationException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-
-import java.util.Map;
 
 /**
  * This class is used to get the instance of CustomVulnerableEndpoint. We are using
@@ -29,7 +28,7 @@ public class EnvUtils {
   /**
    * @param <T>
    * @param clazz Type of the returned Bean
-   * @param name  name of Spring Bean
+   * @param name name of Spring Bean
    * @return Instance of the Spring Bean based on the provided clazz and name.
    * @throws ServiceApplicationException
    */
@@ -38,15 +37,14 @@ public class EnvUtils {
       return this.context.getBean(name, clazz);
     } else {
       throw new ServiceApplicationException(
-              "Unable to find bean with name :- " + name + " and Type :-" + clazz.getName(),
-              ExceptionStatusCodeEnum.INVALID_END_POINT,
-              name);
+          "Unable to find bean with name :- " + name + " and Type :-" + clazz.getName(),
+          ExceptionStatusCodeEnum.INVALID_END_POINT,
+          name);
     }
   }
 
   /**
-   * Please use {@link this#getInstance(Class, String)} if possible as this method is not type
-   * safe.
+   * Please use {@link this#getInstance(Class, String)} if possible as this method is not type safe.
    *
    * @param name
    * @return Instance of the Spring Bean based on the provided name

@@ -1,14 +1,13 @@
 package org.sasanlabs.internal.utility.annotations;
 
-import org.sasanlabs.internal.utility.Variant;
-import org.springframework.core.annotation.AliasFor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.sasanlabs.internal.utility.Variant;
+import org.springframework.core.annotation.AliasFor;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author KSASAN preetkaran20@gmail.com
@@ -34,9 +33,9 @@ public @interface VulnerableAppRequestMapping {
   Variant variant() default Variant.UNSECURE;
 
   /**
-   * Template name is used to construct the url for static resources like js/css/html. UI will
-   * look for path to static templates like static/templates/JWTVulnerabilities/{htmlTemplate}.{js
-   * or css or html} to construct final Html.
+   * Template name is used to construct the url for static resources like js/css/html. UI will look
+   * for path to static templates like static/templates/JWTVulnerabilities/{htmlTemplate}.{js or css
+   * or html} to construct final Html.
    *
    * @return template name
    */

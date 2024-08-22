@@ -1,8 +1,7 @@
 package org.sasanlabs.internal.utility.annotations;
 
-import org.sasanlabs.vulnerability.types.VulnerabilityType;
-
 import java.lang.annotation.*;
+import org.sasanlabs.vulnerability.types.VulnerabilityType;
 
 /**
  * Purpose of this file is just to help user to know various payloads and ways to bypass security
@@ -23,8 +22,7 @@ public @interface AttackVector {
 
   /**
    * This Key's value will be picked up from attackvectors resource folder. Please make sure Key
-   * mentioned in AttackVector annotation is present in the vulnerability's payload properties
-   * file.
+   * mentioned in AttackVector annotation is present in the vulnerability's payload properties file.
    *
    * @return Key that Identifies Curl request
    */

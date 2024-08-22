@@ -1,12 +1,11 @@
 package org.sasanlabs.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.net.UnknownHostException;
+import java.util.List;
 import org.sasanlabs.beans.AllEndPointsResponseBean;
 import org.sasanlabs.beans.ScannerResponseBean;
 import org.sasanlabs.vulnerableapp.facade.schema.VulnerabilityDefinition;
-
-import java.net.UnknownHostException;
-import java.util.List;
 
 /**
  * This is used for providing the entire information about the vulnerableApp like
@@ -18,8 +17,8 @@ import java.util.List;
 public interface IEndPointsInformationProvider {
 
   /**
-   * This Api provides entire information about the exposed vulnerable endpoints by the
-   * application like all the supported vulnerabilities, levels, attack vectors etc.
+   * This Api provides entire information about the exposed vulnerable endpoints by the application
+   * like all the supported vulnerabilities, levels, attack vectors etc.
    *
    * @return
    * @throws JsonProcessingException
@@ -43,5 +42,5 @@ public interface IEndPointsInformationProvider {
    * @throws UnknownHostException
    */
   List<ScannerResponseBean> getScannerRelatedEndPointInformation()
-          throws JsonProcessingException, UnknownHostException;
+      throws JsonProcessingException, UnknownHostException;
 }
