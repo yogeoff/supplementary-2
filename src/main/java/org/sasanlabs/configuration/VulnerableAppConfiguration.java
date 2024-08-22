@@ -1,13 +1,17 @@
 package org.sasanlabs.configuration;
 
 import com.zaxxer.hikari.HikariDataSource;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+
 import jakarta.servlet.http.HttpServletRequest;
+
 import javax.sql.DataSource;
+
 import org.sasanlabs.internal.utility.LevelConstants;
 import org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -106,7 +110,7 @@ public class VulnerableAppConfiguration {
     @ConfigurationProperties("spring.datasource.admin.configuration")
     public DataSource adminDataSource(
             @Qualifier("adminDataSourceProperties")
-                    DataSourceProperties adminDataSourceProperties) {
+            DataSourceProperties adminDataSourceProperties) {
         return adminDataSourceProperties
                 .initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
@@ -123,7 +127,7 @@ public class VulnerableAppConfiguration {
     @ConfigurationProperties("spring.datasource.application.configuration")
     public DataSource applicationDataSource(
             @Qualifier("applicationDataSourceProperties")
-                    DataSourceProperties applicationDataSourceProperties) {
+            DataSourceProperties applicationDataSourceProperties) {
         return applicationDataSourceProperties
                 .initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
@@ -158,7 +162,8 @@ public class VulnerableAppConfiguration {
                     return lookupMultipartResolver();
                 }
             }
-        };
+        }
+        ;
         return new MaxUploadSizeOverrideMultipartFilter();
     }
 }

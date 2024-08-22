@@ -1,7 +1,9 @@
 package org.sasanlabs.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
+
 import org.sasanlabs.internal.utility.annotations.RequestParameterLocation;
 import org.sasanlabs.vulnerability.types.VulnerabilityType;
 
@@ -15,25 +17,25 @@ import org.sasanlabs.vulnerability.types.VulnerabilityType;
  */
 public class ScannerMetaResponseBean {
 
-    @JsonProperty("availableVulnerabilities")
-    private List<VulnerabilityType> availableVulnerabilityTypes;
+  @JsonProperty("availableVulnerabilities")
+  private List<VulnerabilityType> availableVulnerabilityTypes;
 
-    @JsonProperty("availableLocations")
-    private List<RequestParameterLocation> availableLocations;
+  @JsonProperty("availableLocations")
+  private List<RequestParameterLocation> availableLocations;
 
-    public ScannerMetaResponseBean(
-            List<VulnerabilityType> availableVulnerabilityTypes,
-            List<RequestParameterLocation> availableLocations) {
-        super();
-        this.availableVulnerabilityTypes = availableVulnerabilityTypes;
-        this.availableLocations = availableLocations;
-    }
+  public ScannerMetaResponseBean(
+          List<VulnerabilityType> availableVulnerabilityTypes,
+          List<RequestParameterLocation> availableLocations) {
+    super();
+    this.availableVulnerabilityTypes = availableVulnerabilityTypes;
+    this.availableLocations = availableLocations;
+  }
 
-    public List<VulnerabilityType> getAvailableVulnerabilityTypes() {
-        return availableVulnerabilityTypes;
-    }
+  public List<VulnerabilityType> getAvailableVulnerabilityTypes() {
+    return availableVulnerabilityTypes;
+  }
 
-    public List<RequestParameterLocation> getAvailableLocations() {
-        return availableLocations;
-    }
+  public List<RequestParameterLocation> getAvailableLocations() {
+    return availableLocations;
+  }
 }

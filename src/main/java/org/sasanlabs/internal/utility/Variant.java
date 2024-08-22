@@ -7,6 +7,6 @@ package org.sasanlabs.internal.utility;
  * @author Kamil Nowak nowakkamil@yahoo.com
  */
 public enum Variant {
-    UNSECURE,
-    SECURE
+  UNSECURE,
+  SECURE
 }

@@ -1,8 +1,10 @@
 package org.sasanlabs.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Set;
 import java.util.TreeSet;
+
 import org.sasanlabs.vulnerability.types.VulnerabilityType;
 
 /**
@@ -13,47 +15,47 @@ import org.sasanlabs.vulnerability.types.VulnerabilityType;
  */
 public class AllEndPointsResponseBean {
 
-  @JsonProperty("Name")
-  private String name;
+    @JsonProperty("Name")
+    private String name;
 
-  @JsonProperty("Description")
-  private String description;
+    @JsonProperty("Description")
+    private String description;
 
-  @JsonProperty("VulnerabilityTypes")
-  private VulnerabilityType[] vulnerabilityTypes;
+    @JsonProperty("VulnerabilityTypes")
+    private VulnerabilityType[] vulnerabilityTypes;
 
-  @JsonProperty("Detailed Information")
-  private Set<LevelResponseBean> levelDescriptionSet = new TreeSet<>();
+    @JsonProperty("Detailed Information")
+    private Set<LevelResponseBean> levelDescriptionSet = new TreeSet<>();
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public VulnerabilityType[] getVulnerabilityTypes() {
-    return vulnerabilityTypes;
-  }
+    public VulnerabilityType[] getVulnerabilityTypes() {
+        return vulnerabilityTypes;
+    }
 
-  public void setVulnerabilityTypes(VulnerabilityType[] vulnerabilityTypes) {
-    this.vulnerabilityTypes = vulnerabilityTypes;
-  }
+    public void setVulnerabilityTypes(VulnerabilityType[] vulnerabilityTypes) {
+        this.vulnerabilityTypes = vulnerabilityTypes;
+    }
 
-  public Set<LevelResponseBean> getLevelDescriptionSet() {
-    return levelDescriptionSet;
-  }
+    public Set<LevelResponseBean> getLevelDescriptionSet() {
+        return levelDescriptionSet;
+    }
 
-  public void setLevelDescriptionSet(Set<LevelResponseBean> levelDescriptionSet) {
-    this.levelDescriptionSet = levelDescriptionSet;
-  }
+    public void setLevelDescriptionSet(Set<LevelResponseBean> levelDescriptionSet) {
+        this.levelDescriptionSet = levelDescriptionSet;
+    }
 }

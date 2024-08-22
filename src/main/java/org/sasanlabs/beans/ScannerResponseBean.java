@@ -1,7 +1,9 @@
 package org.sasanlabs.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
+
 import org.sasanlabs.vulnerability.types.VulnerabilityType;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,39 +19,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 public class ScannerResponseBean {
 
-    @JsonProperty("url")
-    private String url;
+  @JsonProperty("url")
+  private String url;
 
-    @JsonProperty("variant")
-    private String variant;
+  @JsonProperty("variant")
+  private String variant;
 
-    @JsonProperty("method")
-    private RequestMethod requestMethod;
+  @JsonProperty("method")
+  private RequestMethod requestMethod;
 
-    @JsonProperty("vulnerabilityTypes")
-    private List<VulnerabilityType> vulnerabilityTypes;
+  @JsonProperty("vulnerabilityTypes")
+  private List<VulnerabilityType> vulnerabilityTypes;
 
-    public ScannerResponseBean(
-            String url,
-            String variant,
-            RequestMethod requestMethod,
-            List<VulnerabilityType> vulnerabilityTypes) {
-        super();
-        this.url = url;
-        this.variant = variant;
-        this.requestMethod = requestMethod;
-        this.vulnerabilityTypes = vulnerabilityTypes;
-    }
+  public ScannerResponseBean(
+          String url,
+          String variant,
+          RequestMethod requestMethod,
+          List<VulnerabilityType> vulnerabilityTypes) {
+    super();
+    this.url = url;
+    this.variant = variant;
+    this.requestMethod = requestMethod;
+    this.vulnerabilityTypes = vulnerabilityTypes;
+  }
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    public RequestMethod getRequestMethod() {
-        return requestMethod;
-    }
+  public RequestMethod getRequestMethod() {
+    return requestMethod;
+  }
 
-    public List<VulnerabilityType> getVulnerabilityTypes() {
-        return vulnerabilityTypes;
-    }
+  public List<VulnerabilityType> getVulnerabilityTypes() {
+    return vulnerabilityTypes;
+  }
 }
