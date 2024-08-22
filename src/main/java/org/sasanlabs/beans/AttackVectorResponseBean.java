@@ -27,7 +27,7 @@ public class AttackVectorResponseBean {
   private String description;
 
   public AttackVectorResponseBean(
-          List<VulnerabilityType> vulnerabilityTypes, String curlPayload, String description) {
+      List<VulnerabilityType> vulnerabilityTypes, String curlPayload, String description) {
     super();
     this.vulnerabilityTypes = vulnerabilityTypes;
     this.curlPayload = curlPayload;
