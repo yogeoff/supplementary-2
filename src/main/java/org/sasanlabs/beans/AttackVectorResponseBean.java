@@ -1,7 +1,9 @@
 package org.sasanlabs.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
+
 import org.sasanlabs.vulnerability.types.VulnerabilityType;
 
 /**
@@ -17,32 +19,32 @@ import org.sasanlabs.vulnerability.types.VulnerabilityType;
  */
 public class AttackVectorResponseBean {
 
-    @JsonProperty("VulnerabilityTypes")
-    private List<VulnerabilityType> vulnerabilityTypes;
+  @JsonProperty("VulnerabilityTypes")
+  private List<VulnerabilityType> vulnerabilityTypes;
 
-    @JsonProperty("CurlPayload")
-    private String curlPayload;
+  @JsonProperty("CurlPayload")
+  private String curlPayload;
 
-    @JsonProperty("Description")
-    private String description;
+  @JsonProperty("Description")
+  private String description;
 
-    public AttackVectorResponseBean(
-            List<VulnerabilityType> vulnerabilityTypes, String curlPayload, String description) {
-        super();
-        this.vulnerabilityTypes = vulnerabilityTypes;
-        this.curlPayload = curlPayload;
-        this.description = description;
-    }
+  public AttackVectorResponseBean(
+          List<VulnerabilityType> vulnerabilityTypes, String curlPayload, String description) {
+    super();
+    this.vulnerabilityTypes = vulnerabilityTypes;
+    this.curlPayload = curlPayload;
+    this.description = description;
+  }
 
-    public List<VulnerabilityType> getVulnerabilityTypes() {
-        return vulnerabilityTypes;
-    }
+  public List<VulnerabilityType> getVulnerabilityTypes() {
+    return vulnerabilityTypes;
+  }
 
-    public String getCurlPayload() {
-        return curlPayload;
-    }
+  public String getCurlPayload() {
+    return curlPayload;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 }

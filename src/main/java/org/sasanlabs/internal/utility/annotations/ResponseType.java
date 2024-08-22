@@ -13,7 +13,7 @@ package org.sasanlabs.internal.utility.annotations;
  * @author KSASAN preetkaran20@gmail.com
  */
 public enum ResponseType {
-    ENTIRE_HTML_PAGE,
-    JSON,
-    HTML_TAGS_ONLY
+  ENTIRE_HTML_PAGE,
+  JSON,
+  HTML_TAGS_ONLY
 }

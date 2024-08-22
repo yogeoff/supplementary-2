@@ -19,29 +19,29 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private MessageBundle messageBundle;
+  private MessageBundle messageBundle;
 
-    private static final transient Logger LOGGER =
-            LogManager.getLogger(ControllerExceptionHandler.class);
+  private static final transient Logger LOGGER =
+          LogManager.getLogger(ControllerExceptionHandler.class);
 
-    public ControllerExceptionHandler(MessageBundle messageBundle) {
-        this.messageBundle = messageBundle;
-    }
+  public ControllerExceptionHandler(MessageBundle messageBundle) {
+    this.messageBundle = messageBundle;
+  }
 
-    @ExceptionHandler(ControllerException.class)
-    public ResponseEntity<String> handleControllerExceptions(
-            ControllerException ex, WebRequest request) {
-        LOGGER.error("Controller Exception Occurred :-", ex);
-        return new ResponseEntity<String>(
-                ex.getExceptionStatusCode().getMessage(ex.getArgs(), messageBundle),
-                HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+  @ExceptionHandler(ControllerException.class)
+  public ResponseEntity<String> handleControllerExceptions(
+          ControllerException ex, WebRequest request) {
+    LOGGER.error("Controller Exception Occurred :-", ex);
+    return new ResponseEntity<String>(
+            ex.getExceptionStatusCode().getMessage(ex.getArgs(), messageBundle),
+            HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleExceptions(Exception ex, WebRequest request) {
-        LOGGER.error("General Exception Occurred :- ", ex);
-        return new ResponseEntity<String>(
-                ExceptionStatusCodeEnum.SYSTEM_ERROR.getMessage(null, messageBundle),
-                HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<String> handleExceptions(Exception ex, WebRequest request) {
+    LOGGER.error("General Exception Occurred :- ", ex);
+    return new ResponseEntity<String>(
+            ExceptionStatusCodeEnum.SYSTEM_ERROR.getMessage(null, messageBundle),
+            HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }
