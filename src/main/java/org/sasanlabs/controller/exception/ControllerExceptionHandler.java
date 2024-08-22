@@ -19,10 +19,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-  private MessageBundle messageBundle;
-
-  private static final transient Logger LOGGER =
+  private static final Logger LOGGER =
           LogManager.getLogger(ControllerExceptionHandler.class);
+  private final MessageBundle messageBundle;
 
   public ControllerExceptionHandler(MessageBundle messageBundle) {
     this.messageBundle = messageBundle;

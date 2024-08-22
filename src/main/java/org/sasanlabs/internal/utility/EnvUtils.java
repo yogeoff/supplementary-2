@@ -1,12 +1,12 @@
 package org.sasanlabs.internal.utility;
 
-import java.util.Map;
-
 import org.sasanlabs.internal.utility.annotations.VulnerableAppRestController;
 import org.sasanlabs.service.exception.ExceptionStatusCodeEnum;
 import org.sasanlabs.service.exception.ServiceApplicationException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * This class is used to get the instance of CustomVulnerableEndpoint. We are using
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnvUtils {
 
-  private ApplicationContext context;
+  private final ApplicationContext context;
 
   public EnvUtils(ApplicationContext context) {
     this.context = context;

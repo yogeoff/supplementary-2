@@ -3,19 +3,19 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Vulnerable App</title>
-    <link rel="stylesheet" href="vulnerableApp.css"/>
+    <link href="vulnerableApp.css" rel="stylesheet"/>
 </head>
 
 <body onload="doGetAjaxCall(generateMasterDetail, 'allEndPointJson', true);">
 <!-- Special thanks to Amazing Tutorial on FlexBox: https://www.youtube.com/watch?v=k32voqQhODc-->
 <div class="navbar" style="background-color: blanchedalmond;">
     <div class="navbar-item navbar-brand">
-        <svg width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
+        <svg fill="currentColor" height="2em" viewBox="0 0 16 16" width="2em" xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd"
                   d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 00-.224.296 1.626 1.626 0 00-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 00.436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 00.224-.296 1.627 1.627 0 00.138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 00-.255-.237A1.122 1.122 0 009.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z"
-                  clip-rule="evenodd"/>
+                  fill-rule="evenodd"/>
         </svg>
         VulnerableApp
     </div>
@@ -38,48 +38,48 @@
 </div>
 <div id="pageContainer">
     <!-- Special thanks to video on Master Detail: https://www.youtube.com/watch?v=cZ6HB6pv23M -->
-    <div id="homeContainer" class="homeContainer">
-        <div id="chooseMode" class="chooseMode">
+    <div class="homeContainer" id="homeContainer">
+        <div class="chooseMode" id="chooseMode">
             <h2>
                 Welcome Security enthusiast
             </h2>
             Are you looking to ?
             <div>
-                <button id="learnAndPracticeBtn" class="mode-item">Learn Security</button>
-                <button id="testScannerBtn" class="mode-item">Test Scanner</button>
+                <button class="mode-item" id="learnAndPracticeBtn">Learn Security</button>
+                <button class="mode-item" id="testScannerBtn">Test Scanner</button>
             </div>
         </div>
         <div class="description">
             <!-- TODO need to write it. -->
         </div>
-        <div id="learnAndPractice" class="hide-component">
+        <div class="hide-component" id="learnAndPractice">
             <div class="chooseVulnerability">
                 <h2>Please choose the vulnerability which you are looking to learn.</h2>
             </div>
             <div class="col-3 master"></div>
             <div>
                 <div id="vulnerabilityDescription"></div>
-                <button id="vulnPracticeBtn" class="mode-item">Practice Vulnerability</button>
-                <div id="vulnPractice" class="hide-component">
+                <button class="mode-item" id="vulnPracticeBtn">Practice Vulnerability</button>
+                <div class="hide-component" id="vulnPractice">
                     <div class="col-2 inner-master master"></div>
                     <div class="col-6 detail">
-                        <button id="backBtn" onclick="back()" class="hidden-md">
+                        <button class="hidden-md" id="backBtn" onclick="back()">
                             < Back
                         </button>
                         <h1 class="detail-title text-center"></h1>
                         <div>
                             <button id="showHelp">Show Help</button>
-                            <button id="hideHelp" disabled=true>Hide Help</button>
+                            <button disabled=true id="hideHelp">Hide Help</button>
                             <div id="helpText"></div>
                         </div>
                     </div>
                 </div>
-                <button id="vulnLearnBtn" class="mode-item hide-component">Learn Vulnerability</button>
+                <button class="mode-item hide-component" id="vulnLearnBtn">Learn Vulnerability</button>
                 <div id="dynamicScripts">
                 </div>
             </div>
         </div>
-        <div id="testScanner" class="hide-component">
+        <div class="hide-component" id="testScanner">
             <h2>How can Vulnerability Scanning Tools use VulnerableApp?</h2>
             <hr>
             <div>
