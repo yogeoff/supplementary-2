@@ -16,6 +16,7 @@ Tasks completed:
     - [ ] Add code analysis tool
 - [ ] Implement appropriate DevSecOps into the pipeline and identify the inherent security issues within the codebase
 
+
 ---
 
 Starter repository for DevOps resit CA2 - summer 2024
