@@ -50,7 +50,7 @@ spotless {
     java {
         // Don't enforce the license, just the format.
         clearSteps()
-        googleJavaFormat("1.11.0")
+        googleJavaFormat("1.23.0")
     }
     format("javascript") {
     	target("src/main/resources/**/*.js");
