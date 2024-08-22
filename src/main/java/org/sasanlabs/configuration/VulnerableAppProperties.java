@@ -11,21 +11,21 @@ import java.util.Properties;
  */
 public class VulnerableAppProperties {
 
-    /**
-     * Contains all the properties present in {@code attackvectors/*.properties}
-     */
-    private Properties attackVectorProperties;
+  /**
+   * Contains all the properties present in {@code attackvectors/*.properties}
+   */
+  private Properties attackVectorProperties;
 
-    public VulnerableAppProperties(Properties attackVectorProperties) {
-        super();
-        this.attackVectorProperties = attackVectorProperties;
-    }
+  public VulnerableAppProperties(Properties attackVectorProperties) {
+    super();
+    this.attackVectorProperties = attackVectorProperties;
+  }
 
-    /**
-     * @param propertyKey
-     * @return property value by reading {@code attackvectors/*.properties} files.
-     */
-    public String getAttackVectorProperty(String propertyKey) {
-        return attackVectorProperties.getProperty(propertyKey);
-    }
+  /**
+   * @param propertyKey
+   * @return property value by reading {@code attackvectors/*.properties} files.
+   */
+  public String getAttackVectorProperty(String propertyKey) {
+    return attackVectorProperties.getProperty(propertyKey);
+  }
 }
