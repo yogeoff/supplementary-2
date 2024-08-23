@@ -13,7 +13,7 @@ Tasks completed:
     - [x] Add a contributor to review pull requests
     - [x] Disable circumventing the branch protection rules
     - [ ] Create basic pipeline
-    - [ ] Add code analysis tool
+    - [x] Add code analysis tool
 - [ ] Implement appropriate DevSecOps into the pipeline and identify the inherent security issues within the codebase
 
 
