@@ -1,6 +1,6 @@
 # DevOps-CA2
 
-Yet another test of SonarCloud. And another one due to microphone issues.
+Yet another test of SonarCloud. And another one due to microphone issues. And another.
 
 This is a cloned version of the Supplementary Coursework 2 repo.
 
