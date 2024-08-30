@@ -1,6 +1,6 @@
 # DevOps-CA2
 
-Another test of SonarCloud.
+Yet another test of SonarCloud.
 
 This is a cloned version of the Supplementary Coursework 2 repo.
 
